@@ -21,13 +21,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username');
             $table->string('foto');
             $table->string('number_phone');
-            $table->enum('status', ['Menikah', 'Belum']);
-            $table->boolean('role');
+            $table->enum('status', ['Kontrak', 'Tetap']);
+            $table->boolean('pernikahan');
             $table->foreignId('home_id')->constrained('homes')->onDelete('cascade')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

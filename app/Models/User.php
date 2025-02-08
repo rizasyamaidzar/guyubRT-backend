@@ -19,13 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
         'foto',
         'number_phone',
         'status',
-        'role',
         'home_id',
-        'password',
+        'pernikahan'
     ];
 
     public function income()

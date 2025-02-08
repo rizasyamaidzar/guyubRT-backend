@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cash;
 use App\Models\Category;
 use App\Models\Home;
 use App\Models\User;
@@ -38,23 +39,22 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Pak RT',
-            'username' => 'pakrt',
             'foto' => 'contoh.png',
             'number_phone' => '081238843834',
-            'status' => 'Menikah',
-            'role' => true,
+            'status' => 'Kontrak',
+            'pernikahan' => true,
             'home_id' => 1,
-            'password' => Hash::make('password'),
         ]);
         User::factory()->create([
             'name' => 'Januar Suherman',
-            'username' => 'januar',
             'foto' => 'contoh.png',
             'number_phone' => '081238843834',
-            'status' => 'Menikah',
-            'role' => true,
+            'status' => 'Kontrak',
+            'pernikahan' => true,
             'home_id' => 2,
-            'password' => Hash::make('password'),
+        ]);
+        Cash::factory()->create([
+            'amount' => 0
         ]);
     }
 }

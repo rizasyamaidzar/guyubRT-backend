@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ResponResource;
 use App\Models\Cash;
-use App\Http\Requests\StoreCashRequest;
-use App\Http\Requests\UpdateCashRequest;
+use Illuminate\Http\Request;
 
 class CashController extends Controller
 {
@@ -14,20 +15,14 @@ class CashController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $cash = Cash::get();
+        return new ResponResource(true, 'Kas RT', $cash);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCashRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -41,17 +36,9 @@ class CashController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cash $cash)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCashRequest $request, Cash $cash)
+    public function update(Request $request, Cash $cash)
     {
         //
     }
