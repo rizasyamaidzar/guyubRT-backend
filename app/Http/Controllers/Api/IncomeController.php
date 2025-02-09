@@ -17,7 +17,7 @@ class IncomeController extends Controller
     public function index()
     {
         //
-        $income = Income::latest()->paginate(5);
+        $income = Income::with('user')->with('category')->latest()->paginate(5);
         return new ResponResource(true, 'List Data Income', $income);
     }
 
@@ -49,7 +49,7 @@ class IncomeController extends Controller
     public function show(Income $income)
     {
         //
-        $income = Income::where('id', $income->id)->latest()->paginate(5)->first();
+        $income = Income::with('user')->with('category')->where('id', $income->id)->latest()->paginate(5)->first();
         return new ResponResource(true, 'Detail Data Income', $income);
     }
 

@@ -19,3 +19,4 @@ Route::apiResource('/categories', CategoryController::class);
 Route::apiResource('/incomes', IncomeController::class);
 Route::apiResource('/expenses', ExpenseController::class);
 Route::apiResource('/cash', CashController::class);
+Route::get('/charts', [CashController::class, 'chart']);

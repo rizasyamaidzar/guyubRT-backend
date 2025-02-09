@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Pak RT',
-            'foto' => 'contoh.png',
+            'foto' => 'http://127.0.0.1:8000/users/contoh.jpg',
             'number_phone' => '081238843834',
             'status' => 'Kontrak',
             'pernikahan' => true,
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->create([
             'name' => 'Januar Suherman',
-            'foto' => 'contoh.png',
+            'foto' => 'http://127.0.0.1:8000/users/contoh.jpg',
             'number_phone' => '081238843834',
             'status' => 'Kontrak',
             'pernikahan' => true,

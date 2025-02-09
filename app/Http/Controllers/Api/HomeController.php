@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         //
         $home = Home::with('user')->latest()->paginate(5);
-        return new ResponResource(true, 'List Data Home', compact('home'));
+        return new ResponResource(true, 'List Data Home', $home);
     }
 
     /**
@@ -40,7 +40,7 @@ class HomeController extends Controller
     public function show(Home $home)
     {
         //
-        $home = Home::where('id', $home->id)->latest()->paginate(5)->first();
+        $home = Home::with('user')->where('id', $home->id)->first();
 
         //return collection of home as a resource
         return new ResponResource(true, 'Detail Home', $home);

@@ -32,9 +32,6 @@ class UserController extends Controller
             'number_phone' => 'required',
             'status' => 'required',
         ]);
-        $image = $request->file('foto');
-        $image->storeAs('public/users', $image->hashName());
-
         if ($request->file('foto')) {
             $image = $request->foto;
             $ext   = $image->getClientOriginalExtension();
@@ -44,8 +41,8 @@ class UserController extends Controller
             $validated['foto'] = 'http://127.0.0.1:8000/users/' . $imageName;
         }
         // dd($image);
-        $validated['home_id'] = 1;
-        $validated['pernikahan'] = true;
+        $validated['home_id'] = $request->home_id;
+        $validated['pernikahan'] = $request->pernikahan;
 
         $user = User::create($validated);
         return new ResponResource(true, "Successfully Created", $user);
@@ -66,7 +63,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        //cd..
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'foto' => 'required',
+            'number_phone' => 'required',
+            'status' => 'required',
+        ]);
+        $validated['home_id'] = 1;
+        $validated['pernikahan'] = true;
+        if ($request->file('foto')) {
+            // menghapus data sebelumnya
+            if ($request->oldFoto) {
+                $filePath = $request->oldSampul;
+                if (file_exists($filePath)) {
+                    unlink($filePath); // Menghapus file
+                }
+            }
+            $image = $request->foto;
+            $ext   = $image->getClientOriginalExtension();
+            $randomString = Str::random(5);
+            $imageName = $request->name . '-' . $randomString . '.' . $ext;
+            $image->move(public_path('users'), $imageName);
+            $validated['foto'] = 'http://127.0.0.1:8000/users/' . $imageName;
+        }
+        dd($validated);
+        $user = User::find($user->id);
+        $user->update($validated);
+        return new ResponResource(true, 'Updated Succesfully', $user);
     }
 
     /**
